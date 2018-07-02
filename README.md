@@ -19,8 +19,8 @@ GET
 
 Required:
 
-userId=[String]
-example: userId=anant-shah-kpoint
+* userId=[String]
+* example: userId=anant-shah-kpoint
 
 ### Success Response
 
@@ -45,3 +45,38 @@ The application has been made such that the user just needs to enter the User-ID
 ## Title
 Coordinates of Persons
 Given a video-ID, this API will return a map in which the key is the timestamp and the value is a list consisting of the coordinates along with the ID of the person.
+
+### URL
+
+/app/video/coordinates?gconfid=${gconfid}
+
+### METHOD
+
+GET
+
+### URL Params
+
+Required :
+
+* gconfid=[String]
+* example: gconfid=gcc-abcde123-fg45-hi67-jklmno890123
+
+### Success Response
+
+The response of the API is a map whose key is the timestamp and value is a list of persons found at that timestamp in the video along with their coordinates.
+
+Example :
+
+Code:200
+Content:{"1.0":{("Left"=0.45,"Top"=0.55,"Width"=0.34,"Height"=0.43,"userId"="anant-shah-kpoint"),("Left"=0.12,"Top"=0.78,"Width"=0.56,"Height"=0.67,"userId"=NULL)},"2.0":{("Left"=0.45,"Top"=0.55,"Width"=0.34,"Height"=0.43,"userId"="anant-shah-kpoint"),("Left"=0.12,"Top"=0.78,"Width"=0.56,"Height"=0.67,"userId"=NULL)}}
+
+### Error Response
+
+Example:
+
+Code:422 Unprocessable Entity
+Cause : Video with the entered ID does not exist
+
+### Notes
+
+Once the user selects a video, the ID of the video is mapped and the application run with that ID. At each integer second, it will produce the location of each person at that time instant in the video. 
