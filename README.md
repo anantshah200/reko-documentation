@@ -99,9 +99,9 @@ PUT
 Required:
 
 * image=[String]
-* example: image=Test_Face.jpg
+example: image=Test_Face.jpg
 * userID=[String]
-* example: userId=test-face-kpoint
+ example: userId=test-face-kpoint
 
 ### Success Response
 
@@ -150,3 +150,63 @@ Cause: The image could not be read from the S3 bucket or the image can be read b
 * Each face meta-data in the collection is assigned a unique User Id. Now what AWS API's allow is that we can add a "externalImageId" to an image. What we are doing is, we are assigning the ID entered by the user (argument to the API) to the image(also an argument to the API). Since we are making sure that the image only contains one face, the ID is assigned to the face. 
 * Since we need to make sure that the input image consists just one face, images which contain multiple faces are rejected.
 * If the image cannot be read, an error message is returned. 
+
+## Title
+
+Update Face in Collection
+Suppose the user wants to update an existing face in the collection, he can do so with the help of this API.
+
+### URL
+
+/app/video/update?image=${image_S3_Bucket}&userId=${userId}
+
+### METHOD
+
+PUT
+
+### URL Params
+
+Required:
+
+* image=[String]
+example: image=Test_Face.jpg
+* userID=[String]
+ example: userId=test-face-kpoint
+
+### Success Response 
+
+* If the image has successfully been updated in the collection, a string is returned by the API.
+
+Example : 
+
+Code:200
+Content:{"Face Updating .... FaceId : ABCD1234abce"}
+
+* If the face could not be updated in the collection because of the fact that the new image consisted of multiple faces.
+
+Example : 
+
+Code:200
+Content:{"Face Updating ....Could not add face to the collection as multipled faces were found in the image."}
+
+* If the face could not be updated in the collection because of the fact that a user with the entered UserId does not exist in the collection.
+
+Example :
+
+Code:200
+Content:{"Could not update this face as it was not found in the collection"}
+
+### Error Response
+
+* If the face could not be updated in the collection becuase the image that the user entered was not valid.
+
+Example :
+
+Code:422
+Content:{"Please enter another image"}
+
+### Notes
+
+* If the user wants to update a photo in the collection, he can do so by calling the above described API.
+* What the API first does is that it deleted the existing face meta-data(which is identified by the UesrId passed as a parameter to the API) and then adding the new face meta-data indexed with the same UserId.
+* Hence, if the image that the user enters is not valid(does not contain a face, contains multiple faces, etc.), then the old user face data will be deleted.
