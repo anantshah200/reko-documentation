@@ -170,7 +170,7 @@ Required:
 
 * image=[String]
 example: image=Test_Face.jpg
-* userID=[String]
+* userId=[String]
  example: userId=test-face-kpoint
 
 ### Success Response 
@@ -208,5 +208,5 @@ Content:{"Please enter another image"}
 ### Notes
 
 * If the user wants to update a photo in the collection, he can do so by calling the above described API.
-* What the API first does is that it deleted the existing face meta-data(which is identified by the UesrId passed as a parameter to the API) and then adding the new face meta-data indexed with the same UserId.
-* Hence, if the image that the user enters is not valid(does not contain a face, contains multiple faces, etc.), then the old user face data will be deleted.
+* What the API first does is that it deleted the existing face meta-data(which is identified by the UserId passed as a parameter to the API) and then adding the new face meta-data indexed with the same UserId.
+* Hence, if the image that the user enters is not valid(does not contain a face, contains multiple faces, etc.), then the old user face data will be deleted and hence cannot be retrieved.
