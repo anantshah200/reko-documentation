@@ -240,3 +240,18 @@ AWS Services :
 
 * AWS Collection : 
 1. Label : kpoint-rekognition-photos
+
+
+## DOCKER 
+
+1. The docker image is built on the openjdk image.
+2. Port 8080 is exposed to the container and hence that tag will be required while executing the container.
+3. The aws credentials file has been added to the image as the credentials file at the location /.aws/credentials is searched in the environment of where the application is run.
+4. The image solely contains the jar file and java which are the two things required to run the project which is built on the Spring framework. 
+5. As stated earlier, different images could be created with different credentials file, so as to solve the problem of excess simultaneous load on the AWS Rekognition service.
+
+## ENVIRONMENT 
+
+1. The application is built using the project management tool Maven. 
+2. The application has been developed with the help of the Spring framework. 
+3. The server is implemented using the Tomcat servlet. The default port that Tomcat uses is 8080. 
