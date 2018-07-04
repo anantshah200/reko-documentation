@@ -244,7 +244,7 @@ AWS Services :
 
 ## DOCKER 
 
-1. The docker image is built on the <openjdk> image.
+1. The docker image is built on the openjdk image.
 2. Port 8080 is exposed to the container and hence that tag will be required while executing the container.
 3. The aws credentials file has been added to the image as the credentials file at the location /.aws/credentials is searched in the environment of where the application is run.
 4. The image solely contains the jar file and java which are the two things required to run the project which is built on the Spring framework. 
