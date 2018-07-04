@@ -253,5 +253,5 @@ AWS Services :
 ## ENVIRONMENT 
 
 1. The application is built using the project management tool Maven. 
-2. The application has been developed with the help of the Spring framework.
-3. The server is implemented using the Tomcat servlet.
+2. The application has been developed with the help of the Spring framework. 
+3. The server is implemented using the Tomcat servlet. The default port that Tomcat uses is 8080. 
