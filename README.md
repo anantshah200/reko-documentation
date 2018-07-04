@@ -213,13 +213,6 @@ Content:{"Please enter another image"}
 
 ## SPECIFICATIONS
 
-Problem : 
-*  At a time, for one IAM User(one set of credentials) in AWS, only 20 operations can simultaneously be performed by the Rekognition Service. And hence if there are a large number of requests(greater than 20) an error might be thrown.
-
-Proposed Solution : 
-* Map requests to multiple user credentials and hence as a result a lot of load will not come up on one rekognition service.
-* Have some sort of a queueing system, where operations which take time(/app/video/search) can be performed later while urgent operations like "/app/image.." and "/app/video/coordinates" can be performed first.  
-
 AWS Services : 
 * AWS SQS Queue : 
 1. Label : anant_us-east-1_rekognition_queue
@@ -255,3 +248,15 @@ AWS Services :
 1. The application is built using the project management tool Maven. 
 2. The application has been developed with the help of the Spring framework. 
 3. The server is implemented using the Tomcat servlet. The default port that Tomcat uses is 8080. 
+
+## SECURITY
+
+1. The images that are enetered into the AWS S3 bucket need some sort of verification. For example, if they enter an image of Linus Torvalds but enter the User ID as Roger Federer, then it will not be right.
+2. Some specific convention has to be given to the user Id's such as their kpoint login ID or something like <name>-kpoint. For example : anant-shah-kpoint. This will ensure that the user Id's are unique.
+3. Problem :
+*  At a time, for one IAM User(one set of credentials) in AWS, only 20 operations can simultaneously be performed by the Rekognition Service. And hence if there are a large number of requests(greater than 20) an error might be thrown.
+Proposed Solution :
+* Map requests to multiple user credentials and hence as a result a lot of load will not come up on one rekognition service.
+* Have some sort of a queueing system, where operations which take time(/app/video/search) can be performed later while urgent operations like "/app/image.." and "/app/video/coordinates" can be performed first.
+4. The image parameter is the path of the image in the S3 bucket.
+5. The update API will delete the old image and add a new one, so only special users(the users themselves) should be given the right to update an image. Otherwise anyone will be able to delete face metadata from a collection. 
