@@ -213,30 +213,30 @@ Content:{"Please enter another image"}
 
 ## SPECIFICATIONS
 
-Problem : \
-*  At a time, for one IAM User(one set of credentials) in AWS, only 20 operations can simultaneously be performed by the Rekognition Service. And hence if there are a large number of requests(greater than 20) an error might be thrown.\
+Problem : 
+*  At a time, for one IAM User(one set of credentials) in AWS, only 20 operations can simultaneously be performed by the Rekognition Service. And hence if there are a large number of requests(greater than 20) an error might be thrown.
 
-Proposed Solution : \ 
+Proposed Solution : 
 * Map requests to multiple user credentials and hence as a result a lot of load will not come up on one rekognition service.
-* Have some sort of a queueing system, where operations which take time(/app/video/search) can be performed later while urgent operations like "/app/image.." and "/app/video/coordinates" can be performed first.  \
+* Have some sort of a queueing system, where operations which take time(/app/video/search) can be performed later while urgent operations like "/app/image.." and "/app/video/coordinates" can be performed first.  
 
-AWS Services : \
-* AWS SQS Queue : \
-1. Label : anant_us-east-1_rekognition_queue\
+AWS Services : 
+* AWS SQS Queue : 
+1. Label : anant_us-east-1_rekognition_queue
 2. URL : https://sqs.us-east-1.amazonaws.com/701980022429/anant_us-east-1_rekognition_queue 
-3. Region : US-EAST-1\
+3. Region : US-EAST-1
 
-* AWS SNS Topic : \
-1. Label : AmazonRekognition-anant_us-east-1_topic\
-2. Region : US-EAST-1\
+* AWS SNS Topic : 
+1. Label : AmazonRekognition-anant_us-east-1_topic
+2. Region : US-EAST-1
 
-* AWS S3 Bucket to store face images : \
-1. Label : rekognition-user-faces\
-2. Region : US-EAST-1\
+* AWS S3 Bucket to store face images : 
+1. Label : rekognition-user-faces
+2. Region : US-EAST-1
 
-* AWS S3 Bucket where the videos are stored : \
-1. Label : cobra-inr.us-east-1.kpoint\
-2. Region : US-EAST-1\
+* AWS S3 Bucket where the videos are stored : 
+1. Label : cobra-inr.us-east-1.kpoint
+2. Region : US-EAST-1
 
-* AWS Collection : \
+* AWS Collection : 
 1. Label : kpoint-rekognition-photos
